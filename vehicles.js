@@ -2,8 +2,8 @@ import { vehicles } from "./mongoConnect.js";
 
 export const addVehicle = async (req, res) => {
   console.log(req.body)
-  await vehicles.insertOne(req.body)
-  res.send("New Vehicle Added")
+  let newVehicle = await vehicles.insertOne(req.body)
+  res.send(newVehicle)
 };
 
 export const getAllVehicles =  async (req, res) => {
