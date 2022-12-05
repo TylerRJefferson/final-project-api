@@ -16,7 +16,7 @@ export const updateLogs = async (req, res) => {
   const {vehicle_id} = req.params
   
   await vehicles
-    .findOneAndUpdate({ _id: new ObjectId(vehicle_id)}, { $set: req.body})
+    .findOneAndUpdate({ _id: new ObjectId(vehicle_id)}, { $push: {logs: req.body}})
     .catch(err => {
       res.status(500).send(err)
       return
