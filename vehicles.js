@@ -24,3 +24,16 @@ export const updateLogs = async (req, res) => {
   res.send(req.body)
   //sending back body of updated vehicle
 };
+
+export const deleteVehicle = async (req, res) => {
+  const {vehicle_id} = req.params
+
+  await vehicles
+    .findOneAndDelete({ _id: new ObjectId(vehicle_id) })
+    .catch(err => {
+      res.status(500).send(err)
+      return
+    })
+    getAllVehicles(req,res)
+  // res.status(202).send("Vehicle Deleted")
+}
